@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shiga Account | AI Book Academy</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-page">
+
+  <main class="auth-main">
+    <section class="auth-card">
+
+      <div class="auth-logo">AI</div>
+
+      <h1>Shiga Account</h1>
+
+      <p class="auth-description">
+        Shigar da email da password ɗinka domin samun darussanka.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="misali@email.com"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Rubuta password"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              id="showLoginPassword"
+              class="show-password"
+            >
+              👁️
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="button button-primary auth-submit"
+        >
+          Shiga
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Ba ka da account?
+        <a href="register.html">Yi Rijista</a>
+      </p>
+
+      <a href="index.html" class="back-home">
+        ← Komawa shafin farko
+      </a>
+
+    </section>
+  </main>
+
+  <script type="module" src="login.js"></script>

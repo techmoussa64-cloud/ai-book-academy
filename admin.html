@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin | AI Book Academy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="dashboard-header">
+    <div>
+      <h2>AI Book Academy</h2>
+      <p>Shafin Admin</p>
+    </div>
+
+    <button id="logoutButton" class="button">
+      Fita
+    </button>
+  </header>
+
+  <main class="dashboard-main">
+
+    <section class="dashboard-welcome">
+      <h1>Ɗora Sabon Darasi</h1>
+      <p>Zaɓi PDF daga cikin wayarka sannan ka ɗora shi.</p>
+    </section>
+
+    <section class="course-card">
+
+      <form id="uploadForm">
+
+        <div class="form-group">
+          <label for="lessonTitle">Sunan Darasi</label>
+
+          <input
+            type="text"
+            id="lessonTitle"
+            placeholder="Misali: Gabatarwa zuwa AI"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="lessonDescription">Bayani</label>
+
+          <textarea
+            id="lessonDescription"
+            placeholder="Rubuta taƙaitaccen bayani game da darasin"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="pdfFile">Zaɓi PDF daga wayarka</label>
+
+          <input
+            type="file"
+            id="pdfFile"
+            accept=".pdf,application/pdf"
+            required
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="button button-primary"
+          id="uploadButton"
+        >
+          Ɗora Darasi
+        </button>
+
+        <p id="uploadMessage"></p>
+
+      </form>
+
+    </section>
+
+    <p>
+      <a href="dashboard.html">← Je zuwa Darussana</a>
+    </p>
+
+  </main>
+
+  <script type="module" src="admin.js"></script>
+
+</body>
+</html>

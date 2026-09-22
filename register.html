@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ha">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yi Rijista | AI Book Academy</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="auth-page">
+
+  <main class="auth-container">
+
+    <section class="auth-card">
+
+      <a href="index.html" class="logo auth-logo">
+        <span class="logo-icon">📘</span>
+
+        <span>
+          <strong>AI Book</strong>
+          <small>Academy</small>
+        </span>
+      </a>
+
+      <div class="auth-heading">
+        <h1>Yi Rijista</h1>
+
+        <p>
+          Ƙirƙiri account domin fara koyon rubutu da fasahar AI.
+        </p>
+      </div>
+
+      <div id="registerMessage" class="form-message"></div>
+
+      <form id="registerForm">
+
+        <div class="form-group">
+          <label for="fullName">Cikakken Suna</label>
+
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Rubuta cikakken sunanka"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="misali@email.com"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Lambar Waya</label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Misali: 0914658516"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              placeholder="Aƙalla haruffa 6"
+              minlength="6"
+              required>
+
+            <button type="button" class="show-password"
+              data-input="password">
+              👁
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">
+            Maimaita Password
+          </label>
+
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Sake rubuta password"
+              minlength="6"
+              required>
+
+            <button type="button" class="show-password"
+              data-input="confirmPassword">
+              👁
+            </button>
+          </div>
+        </div>
+
+        <label class="checkbox-row">
+          <input type="checkbox" id="terms" required>
+
+          <span>
+            Na amince da dokoki da tsarin amfani da
+            AI Book Academy.
+          </span>
+        </label>
+
+        <button type="submit"
+          class="button button-primary auth-submit">
+          Yi Rijista
+        </button>
+
+      </form>
+
+      <p class="auth-switch">
+        Kana da account?
+
+        <a href="login.html">
+          Shiga nan
+        </a>
+      </p>
+
+      <a href="index.html" class="back-home">
+        ← Komawa shafin farko
+      </a>
+
+    </section>
+
+  </main>
+
+  
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCjG_Udhrr4rsFqYszQKMtk2Z2_ysBgSuM",
+    authDomain: "ai-book-academy.firebaseapp.com",
+    projectId: "ai-book-academy",
+    storageBucket: "ai-book-academy.firebasestorage.app",
+    messagingSenderId: "400711274890",
+    appId: "1:400711274890:web:d7558c32596eaba3c27873"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+const registerForm = document.getElementById("registerForm");
+
+document.querySelectorAll(".show-password").forEach((button) => {
+  button.addEventListener("click", () => {
+    const input = document.getElementById(button.dataset.input);
+
+    if (input.type === "password") {
+      input.type = "text";
+      button.textContent = "🙈";
+    } else {
+      input.type = "password";
+      button.textContent = "👁️";
+    }
+  });
+});
+
+registerForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const fullName = document.getElementById("fullName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+  const terms = document.getElementById("terms").checked;
+
+  if (password !== confirmPassword) {
+    alert("Password biyu ba su yi daidai ba.");
+    return;
+  }
+
+  if (!terms) {
+    alert("Dole ne ka amince da dokokin amfani.");
+    return;
+  }
+
+  try {
+    const result = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    await updateProfile(result.user, {
+      displayName: fullName
+    });
+
+    alert("An yi rijista cikin nasara!");
+    registerForm.reset();
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      alert("An riga an yi amfani da wannan email.");
+    } else if (error.code === "auth/invalid-email") {
+      alert("Email ɗin ba daidai ba ne.");
+    } else if (error.code === "auth/weak-password") {
+      alert("Password ya yi rauni. Yi amfani da haruffa 6 ko fiye.");
+    } else {
+      alert("An samu matsala: " + error.message);
+    }
+  }
+});
+</script>
+</body>
+</html>
