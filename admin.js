@@ -19,7 +19,7 @@ const auth = getAuth(app);
 const SUPABASE_URL = "https://wejuwaismkgclapavavs.supabase.co";
 const SUPABASE_KEY = "sb_publishable_dstoxinmazx2sdwDeKFsNQ_KTJ3kju_";
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-const ADMIN_EMAIL = "musanuhubarka@gmail.com";
+const ADMIN_EMAIL = "musataka360@gmail.com";
 
 const logoutButton = document.getElementById("logoutButton");
 const uploadForm = document.getElementById("uploadForm");
