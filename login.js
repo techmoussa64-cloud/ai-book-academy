@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getAuth, signInWithEmailAndPasswordimport {,
+  sendPasswordResetEmail
+} from "https://www.gstatic.com/firebasejs/...";} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 const firebaseConfig = {
     apiKey: "AIzaSyCjG_Udhrr4rsFqYszQKMtk2Z2_ysBgSuM",
@@ -18,7 +20,27 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const ADMIN_EMAIL = "musanuhubarka@gmail.com";
 const loginForm = document.getElementById("loginForm");
 const loginPassword = document.getElementById("loginPassword");
+const forgotPassword = document.getElementById("forgotPassword");
+
+
 const showLoginPassword = document.getElementById("showLoginPassword");
+  
+
+forgotPassword.addEventListener("click", async () => {
+  const email = document.getElementById("loginEmail").value.trim();
+
+  if (!email) {
+    alert("Da farko ka rubuta email ɗinka.");
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert("An tura hanyar sauya kalmar sirri zuwa email ɗinka.");
+  } catch (error) {
+    alert("An samu matsala. Ka tabbatar email ɗin daidai ne.");
+  }
+});
 showLoginPassword.addEventListener("click", () => {
   if (loginPassword.type === "password") {
     loginPassword.type = "text";
